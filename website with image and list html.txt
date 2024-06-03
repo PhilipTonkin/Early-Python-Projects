@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My First Image</h1>
+
+<img src="exeter.jpg" alt="exeter cathedral" width="800" height="500">
+
+<table style="width:100%">
+  <tr>
+    <td>
+      <ul>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+      </ul>
+    </td>
+    <td>
+      <ol>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+      </ol>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
