@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+</head>
+<body>
+    <h1>Guessing Game Result</h1>
+    <p>{{ response }}</p>
+    <a href="/">Play Again</a>
+</body>
+</html>

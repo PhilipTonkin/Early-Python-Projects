@@ -1,0 +1,24 @@
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/result', methods=['POST'])
+def result():
+    answer = request.form['question'].lower().strip()
+    response = ""
+
+    if answer == "y":
+        response = "So it's either an Ostrich, Lion, Fish, or Whale!<br>Does the animal live in the water? (y/n)"
+    elif answer == "n":
+        response = "Ah ha! It's a vegetable!<br>Is the vegetable green? (y/n)"
+    else:
+        response = "Invalid input, please enter 'y' or 'n'."
+
+    return render_template('result.html', response=response)
+
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -1,0 +1,93 @@
+import time
+import sys
+
+def display_message(message, delay=0.1):
+    for char in message:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(delay)
+    print()  # Move to the next line after the message is printed
+
+def main_menu():
+    print("\nWelcome to the pizza calculator!")   
+    print("Would you like thin or thick crust pizza?")
+
+    # Validate crust type
+    while True:
+        crust = input().lower().strip()
+        if crust == "thin" or crust == "thick":
+            break
+        else:
+            print("Please enter a valid choice: 'thin' or 'thick'.")
+
+    print("What size pizza would you like? (8, 10, 12, 14, or 18 inches)")
+    valid_sizes = [8, 10, 12, 14, 18]
+
+    # Validate pizza size
+    while True:
+        try:
+            size = int(input().strip())
+            if size in valid_sizes:
+                break
+            else:
+                print("Please enter a valid size: 8, 10, 12, 14, or 18.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+    print("Would you like cheese on your pizza? (y/n)")
+    while True:
+        cheese = input().lower().strip()
+        if cheese == "y" or cheese == "n":
+            break
+        else:
+            print("Please enter a valid choice: 'y' or 'n'.")
+
+    print("What type of pizza would you like: margherita, vegetable, vegan, hawaiian, meat feast")
+    while True:
+        pizza_type = input().lower().strip()
+        if pizza_type in ["margherita", "vegetable", "vegan", "hawaiian", "meat feast"]:
+            break
+        else:
+            print("Please enter a valid choice: margherita, vegetable, vegan, hawaiian, meat feast.")
+
+    print("Do you have a discount code? If so, please enter it now. Press Enter to skip.")
+    voucher_code = input().lower().strip()
+
+    # Initialize the total cost with the base cost
+    if crust == "thin":
+        total_cost = 10
+    else:
+        total_cost = 8
+
+    # Add additional charges based on the pizza size
+    if size > 10:
+        total_cost += 2
+
+    # Apply the discount if cheese is not chosen
+    if cheese == "n":
+        total_cost -= 0.50
+
+    # Add additional charges based on the type of pizza
+    if pizza_type in ["vegetable", "vegan"]:
+        total_cost += 1
+    elif pizza_type in ["hawaiian", "meat feast"]:
+        total_cost += 2
+
+    # Apply the voucher code discount if applicable
+    if voucher_code == "funfriday" and size == 18:
+        total_cost -= 2
+
+    print("Thank you for your order! Please check your order summary below:")
+    print(f"Crust: {crust}, Size: {size}, Cheese: {'yes' if cheese == 'y' else 'no'}, Type: {pizza_type}, Discount: £{2 if voucher_code == 'funfriday' and size == 18 else 0}, Total Cost: £{total_cost:.2f}")
+
+    # Repeat the thank you message for 10 seconds
+    start_time = time.time()
+    while time.time() - start_time < 10:
+        display_message("Thank you for your pizza!", 0.1'\r)
+        time.sleep(0.5)  # Add a short delay between repetitions
+
+    # Return to the main menu
+    main_menu()
+
+# Start the main menu
+main_menu()
